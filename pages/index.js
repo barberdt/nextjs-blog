@@ -17,7 +17,10 @@ export default function Home({ allPostsData }) {
         <title>{siteTitle}</title>
       </Head>
       <section className={utilStyles.headingMd}>
-        <p>Yo whatup. I'm Davis and this is a test.</p>
+        <p>
+          Yo whatup. I'm Davis and this is a test. This has text added
+          to test the preview deployment process on Vercel.
+        </p>
       </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>

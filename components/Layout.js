@@ -7,6 +7,18 @@ const name = 'Davis Barber'
 export const siteTitle = 'Next.js Sample Website'
 
 export default function Layout({ children, home }) {
+  function handleProveSourceClick() {
+    fetch('https://api.provesrc.com/webhooks/track/836a1c43ab141feead9aceee0f2963ec', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: `${Math.random().toString(36).substring(2, 8) + Math.random().toString(36).substring(2, 8)}@teachable.com`,
+      })
+    })
+  }
+
   return (
     <div className={styles.container}>
       <Head>
@@ -61,6 +73,9 @@ export default function Layout({ children, home }) {
           </Link>
         </div>
       )}
+      <button onClick={handleProveSourceClick}>
+        Click me to create ProveSource Notification!
+      </button>
     </div>
   )
 }

@@ -1,8 +1,10 @@
 import Head from 'next/head'
+import useSWR from 'swr'
 import Date from '../../components/Date'
 import Layout from '../../components/Layout'
-import { getAllPostIds, getPostData } from '../../lib/posts'
+import { getAllPostIds, getContentfulPosts, getPostData } from '../../lib/posts'
 import utilStyles from '../../styles/utils.module.css'
+
 
 export async function getStaticPaths() {
   const paths = getAllPostIds()
@@ -11,10 +13,18 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const postData = await getPostData(params.id)
-  return { props: { postData } }
+  const contentfulPosts = await getContentfulPosts()
+  return { props: { contentfulPosts, postData } }
 }
 
-export default function Post({ postData }) {
+export default function Post({ contentfulPosts, postData }) {
+  const { data } = useSWR('/api/getEntries', async () => {
+    const res = await fetch('/api/getEntries')
+    return res.json()
+  })
+
+  console.log(data)
+
   return (
     <Layout>
       <Head>

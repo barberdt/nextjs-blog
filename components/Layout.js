@@ -73,7 +73,7 @@ export default function Layout({ children, home }) {
           </Link>
         </div>
       )}
-      <button id="test-button" onClick={handleProveSourceClick}>
+      <button id="test-button-test" onClick={handleProveSourceClick}>
         Click me to create ProveSource Notification!
       </button>
     </div>
